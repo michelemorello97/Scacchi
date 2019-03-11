@@ -7,8 +7,8 @@ import interfaces.Pezzo;
 
 public class Regina extends Pezzo {
 
-	public Regina(Colore c) {
-		super(c);
+	public Regina(Colore c, int x, int y) {
+		super(c, x, y);
 		// TODO Auto-generated constructor stub
 	}
 	

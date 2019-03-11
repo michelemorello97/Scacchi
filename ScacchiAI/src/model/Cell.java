@@ -15,10 +15,12 @@ public class Cell{
 	int x;
 	int y;
 	JButton btn;
+	Boolean clicked;
 	
 	public Cell(int x, int y){
 		this.x=x;
 		this.y=y;
+		clicked=false;
 		btn=new JButton();
 		
 		if(x<=1 || x>=6)
@@ -28,38 +30,38 @@ public class Cell{
 			//pedoni
 			if(x==1) {
 				img = ImageIO.read(getClass().getResource("../resources/pedoneNero.png"));
-				p=new Pedone(Colore.nero);
+				p=new Pedone(Colore.nero, x, y);
 			}
 			else if(x==6) {
 				img = ImageIO.read(getClass().getResource("../resources/pedoneBianco.png"));
-				p=new Pedone(Colore.bianco);
+				p=new Pedone(Colore.bianco, x, y);
 			}
 			//pezzi neri
 			else if(x==0)
 			{
 					if(y==0 || y==7) {
 						img = ImageIO.read(getClass().getResource("../resources/torreNera.png"));
-						p=new Torre(Colore.nero);
+						p=new Torre(Colore.nero, x, y);
 						}
 					
 					else if(y==1 || y==6) {
 						img = ImageIO.read(getClass().getResource("../resources/cavalloNero.png"));
-						p=new Cavallo(Colore.nero);
+						p=new Cavallo(Colore.nero, x, y);
 						}
 					
 					else if(y==2 || y==5) {
 						img = ImageIO.read(getClass().getResource("../resources/alfiereNero.png"));
-						p=new Alfiere(Colore.nero);
+						p=new Alfiere(Colore.nero, x, y);
 						}
 					
 					else if(y==3) {
 						img = ImageIO.read(getClass().getResource("../resources/reginaNera.png"));
-						p=new Regina(Colore.nero);
+						p=new Regina(Colore.nero, x, y);
 						}
 					
 					else if(y==4) {
 						img = ImageIO.read(getClass().getResource("../resources/reNero.png"));
-						p=new Re(Colore.nero);
+						p=new Re(Colore.nero, x, y);
 						}
 			}
 			
@@ -67,27 +69,27 @@ public class Cell{
 			{
 				if(y==0 || y==7) {
 					img = ImageIO.read(getClass().getResource("../resources/torreBianca.png"));
-					p=new Torre(Colore.bianco);
+					p=new Torre(Colore.bianco, x, y);
 					}
 				
 				else if(y==1 || y==6) {
 					img = ImageIO.read(getClass().getResource("../resources/cavalloBianco.png"));
-					p=new Cavallo(Colore.bianco);
+					p=new Cavallo(Colore.bianco, x, y);
 					}
 				
 				else if(y==2 || y==5) {
 					img = ImageIO.read(getClass().getResource("../resources/alfiereBianco.png"));
-					p=new Alfiere(Colore.bianco);
+					p=new Alfiere(Colore.bianco, x, y);
 					}
 				
 				else if(y==3) {
 					img = ImageIO.read(getClass().getResource("../resources/reginaBianca.png"));
-					p=new Regina(Colore.bianco);
+					p=new Regina(Colore.bianco, x, y);
 					}
 				
 				else if(y==4) {
 					img = ImageIO.read(getClass().getResource("../resources/reBianco.png"));
-					p=new Re(Colore.bianco);
+					p=new Re(Colore.bianco, x, y);
 					}
 			}
 				
@@ -106,6 +108,22 @@ public class Cell{
 		
 	}
 	
+	public Pezzo getP() {
+		return p;
+	}
+
+	public void setP(Pezzo p) {
+		this.p = p;
+	}
+
+	public Boolean getClicked() {
+		return clicked;
+	}
+
+	public void setClicked(Boolean clicked) {
+		this.clicked = clicked;
+	}
+
 	public Cell(){
 		x=0;
 		y=0;

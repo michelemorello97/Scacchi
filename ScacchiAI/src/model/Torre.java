@@ -7,8 +7,8 @@ import interfaces.Pezzo;
 
 public class Torre extends Pezzo{
 
-	public Torre(Colore c) {
-		super(c);
+	public Torre(Colore c, int x, int y) {
+		super(c, x, y);
 		// TODO Auto-generated constructor stub
 	}
 	

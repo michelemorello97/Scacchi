@@ -1,19 +1,32 @@
-package visual;
+package graphic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import interfaces.Pezzo;
+import javafx.geometry.Dimension2D;
 import model.Cell;
 
 public class ChessPanel extends JPanel{
 
 	Cell[][] celle;
 	boolean selected;
+	Image ok=null;
 	
 	public ChessPanel(int w, int h) {
 		super();
+		try {
+			ok= ImageIO.read(getClass().getResource("../resources/mossa_permessa.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		this.setSize(w, h);
 		selected=false;
 		
@@ -64,7 +77,34 @@ public class ChessPanel extends JPanel{
 			}
 		}
 		
+		if(isClicked()) {
+			Pezzo p=whoIsClicked();
+			for(Dimension2D d: p.getMossePossibili()) {
+				g.drawImage(ok,(int) d.getWidth(), (int) d.getWidth(), null);
+			}
+		}
 		
+		
+	}
+	
+	public Boolean isClicked() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				if(celle[i][j].getClicked())
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public Pezzo whoIsClicked() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				if(celle[i][j].getClicked())
+					return celle[i][j].getP();
+			}
+		}
+		return null;
 	}
 	
 	

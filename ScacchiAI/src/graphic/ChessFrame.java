@@ -1,4 +1,4 @@
-package visual;
+package graphic;
 
 
 import javax.swing.JFrame;

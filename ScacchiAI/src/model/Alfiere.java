@@ -7,8 +7,8 @@ import interfaces.Pezzo;
 
 public class Alfiere extends Pezzo {
 
-	public Alfiere(Colore c) {
-		super(c);
+	public Alfiere(Colore c, int x, int y) {
+		super(c, x, y);
 		// TODO Auto-generated constructor stub
 	}
 	
