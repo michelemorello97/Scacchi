@@ -3,24 +3,34 @@ package graphic;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import interfaces.Colore;
 import interfaces.Pezzo;
 import javafx.geometry.Dimension2D;
 import model.Cell;
+import model.Empty;
+import model.Pedone;
 
 public class ChessPanel extends JPanel{
 
 	Cell[][] celle;
-	boolean selected;
+
 	Image ok=null;
+	Pezzo selected;
+	List<Dimension2D> possibleMoves;
+	Colore turno;
 	
 	public ChessPanel(int w, int h) {
 		super();
+		turno=Colore.bianco;
 		try {
 			ok= ImageIO.read(getClass().getResource("../resources/mossa_permessa.png"));
 		} catch (IOException e1) {
@@ -28,12 +38,13 @@ public class ChessPanel extends JPanel{
 			e1.printStackTrace();
 		}
 		this.setSize(w, h);
-		selected=false;
+		
+		possibleMoves=new ArrayList<Dimension2D>();
 		
 		celle=new Cell[8][8];
 		for(int i=0; i<8; i++)
 			for(int j=0; j<8; j++) {
-				celle[i][j]=new Cell(i, j);
+				celle[i][j]=new Cell(i, j, this);
 			
 				this.add(celle[i][j].getBtn());
 			}
@@ -41,24 +52,8 @@ public class ChessPanel extends JPanel{
 	
 		
 		
-		new Thread() {
-			@Override
-			public void run() {
-				
-				while(true) {
-					
-					repaint();
-					try {
-						Thread.sleep(16);
-					} 
-					catch (InterruptedException e) {
-						
-						e.printStackTrace();
-					}
-				}
-			}
-		}.start();
-		
+	
+		repaint();
 	}
 	
 	@Override
@@ -77,35 +72,61 @@ public class ChessPanel extends JPanel{
 			}
 		}
 		
-		if(isClicked()) {
-			Pezzo p=whoIsClicked();
-			for(Dimension2D d: p.getMossePossibili()) {
-				g.drawImage(ok,(int) d.getWidth(), (int) d.getWidth(), null);
+		if(possibleMoves!=null && possibleMoves.size()!=0) {
+			for(Dimension2D d: possibleMoves) {
+				celle[(int)d.getWidth()][(int)d.getHeight()].getBtn().setBackground(new Color(127,	255,	0));
 			}
 		}
 		
 		
+		
+		
+	}
+
+	public Cell[][] getCelle() {
+		return celle;
+	}
+
+	public void setCelle(Cell[][] celle) {
+		this.celle = celle;
+	}
+
+	public Colore getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Colore turno) {
+		this.turno = turno;
+	}
+
+	public List getPossibleMoves() {
+		return possibleMoves;
+	}
+
+	public void setPossibleMoves(List possibleMoves) {
+		this.possibleMoves = possibleMoves;
 	}
 	
-	public Boolean isClicked() {
-		for(int i=0; i<8; i++) {
-			for(int j=0; j<8; j++) {
-				if(celle[i][j].getClicked())
-					return true;
+	public void stampamosse() {
+		if(possibleMoves!=null && possibleMoves.size()!=0)
+			for(Dimension2D d: possibleMoves) {
+				System.out.println(d.getWidth()+" "+d.getHeight());
 			}
-		}
-		return false;
+	}
+
+	public Pezzo getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Pezzo selected) {
+		this.selected = selected;
 	}
 	
-	public Pezzo whoIsClicked() {
-		for(int i=0; i<8; i++) {
-			for(int j=0; j<8; j++) {
-				if(celle[i][j].getClicked())
-					return celle[i][j].getP();
-			}
-		}
-		return null;
+	public void cambiaTurno() {
+		if(turno==Colore.bianco)
+			turno=Colore.nero;
+		else
+			turno=Colore.bianco;
 	}
-	
 	
 }

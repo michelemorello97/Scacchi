@@ -13,9 +13,9 @@ public class ChessFrame extends JFrame{
 		
 		
 		this.setSize(600, 600);
-		
+		this.setResizable(false);
 		panel= new ChessPanel(600, 600);
-
+		
 		this.setContentPane(panel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -26,6 +26,7 @@ public static void main(String[] args) {
 		f.setTitle("Chess I.A.");
 	//	f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	//	f.setUndecorated(true);
+		
 		f.setVisible(true);
 	}
 
