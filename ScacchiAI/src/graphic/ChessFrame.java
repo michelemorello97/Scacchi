@@ -2,6 +2,7 @@ package graphic;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class ChessFrame extends JFrame{
@@ -28,6 +29,7 @@ public static void main(String[] args) {
 	//	f.setUndecorated(true);
 		
 		f.setVisible(true);
+		JOptionPane.showMessageDialog(f, "Cominciano i Bianchi!");
 	}
 
 }

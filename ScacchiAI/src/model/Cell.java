@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import graphic.ChessPanel;
 import interfaces.Colore;
 import interfaces.Pezzo;
+import javafx.geometry.Dimension2D;
 
 public class Cell{
 
@@ -116,6 +117,7 @@ public class Cell{
 
 	public void setP(Pezzo p) {
 		this.p = p;
+		
 	}
 
 	

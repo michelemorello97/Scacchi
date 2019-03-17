@@ -18,12 +18,12 @@ public class Empty extends Pezzo {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+	System.out.println("sono empty "+ posizione.getWidth()+ " "+posizione.getHeight());
 		
-	
 		if(reference.getPossibleMoves().size()!=0)
 		for(int i=0; i<reference.getPossibleMoves().size(); i++) {
 			if(posizione.equals(reference.getPossibleMoves().get(i))) {
-		
+				
 				
 				
 				//salvo l'icona in G
@@ -35,7 +35,10 @@ public class Empty extends Pezzo {
 				reference.getCelle()[(int)posizione.getWidth()][(int)posizione.getHeight()].btn.setIcon(G); 
 				
 				Pezzo pezzo=reference.getSelected();
+				
+				Dimension2D poss=new Dimension2D(pezzo.getPosizione().getWidth(), pezzo.getPosizione().getHeight());
 				Pezzo pezzo2=this;
+				
 				
 				
 				//tolgo il listener del pezzo dalla vecchia casella e lo sostituisco con una vuota
@@ -56,12 +59,15 @@ public class Empty extends Pezzo {
 				}
 				
 				reference.cambiaTurno();
+				//reference.riassestaPos();
 				break;
 			}//fine if
 		}//fina for
-		
+		reference.riassestaPos();
 		reference.getPossibleMoves().clear();
 		reference.repaint();
+		
+		
 	}
 	
 	@Override

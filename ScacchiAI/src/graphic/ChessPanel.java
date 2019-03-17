@@ -129,4 +129,21 @@ public class ChessPanel extends JPanel{
 			turno=Colore.bianco;
 	}
 	
+	public void riassestaPos() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				celle[i][j].getP().setPosizione(new Dimension2D(i, j));
+			}
+		}
+	}
+	
+	public void stampaPos() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				System.out.print((int)celle[i][j].getP().getPosizione().getWidth()+"-"+(int)celle[i][j].getP().getPosizione().getHeight()+" ");
+			}
+			System.out.println(" ");
+		}
+	}
+	
 }
