@@ -51,4 +51,8 @@ public abstract class Pezzo implements ActionListener{
 	public void setC(Colore c) {
 		this.c = c;
 	}
+	
+	public abstract List<Dimension2D> celleAttaccate();
+	
+	public abstract boolean mangiato();
 }

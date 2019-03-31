@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 import javax.swing.Icon;
 
@@ -75,4 +76,14 @@ public class Empty extends Pezzo {
 		System.out.println("sono empty");
 	}
 
+	@Override
+	public List<Dimension2D> celleAttaccate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean mangiato() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

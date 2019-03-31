@@ -2,6 +2,7 @@ package model;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.Icon;
@@ -29,7 +30,7 @@ public class Pedone extends Pezzo{
 		reference.riassestaPos();
 		
 	}
-	
+	@Override
 	public boolean mangiato() {
 		if(reference.getPossibleMoves().size()!=0)
 			for(int i=0; i<reference.getPossibleMoves().size(); i++) {
@@ -143,4 +144,36 @@ public class Pedone extends Pezzo{
 		this.alreadyMoved = alreadyMoved;
 	}
 	
+	@Override
+	public List<Dimension2D> celleAttaccate() {
+		List<Dimension2D> celle=new LinkedList<>();
+		
+		int x=(int)this.getPosizione().getWidth();
+		int y=(int)this.getPosizione().getHeight();
+		
+		if(this.c==Colore.bianco)
+		{
+			x--;
+			y++;
+			if(x>=0 && y<=7) 
+				celle.add(new Dimension2D(x, y));
+			
+			y-=2;
+			if(x>=0 && y>=0)
+				celle.add(new Dimension2D(x, y));
+		}
+		
+		
+		else {
+			x++;
+			y++;
+			if(x<=7 && y<=7) 
+				celle.add(new Dimension2D(x, y));
+			
+			y-=2;
+			if(x<=7 && y>=0)
+				celle.add(new Dimension2D(x, y));
+		}
+		return celle;
+	}
 }

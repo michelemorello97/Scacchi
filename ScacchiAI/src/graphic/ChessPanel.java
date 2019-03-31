@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -144,6 +145,25 @@ public class ChessPanel extends JPanel{
 			}
 			System.out.println(" ");
 		}
+	}
+	
+	public List<Dimension2D> cellaAttaccata(Pezzo p) {
+		List<Dimension2D> toh=new LinkedList<>();
+		
+		for(int i=0; i<8; i++)
+		{
+			for(int j=0; j<8; j++)
+			{
+				if(celle[i][j].getP().getC()!=p.getC())
+				{
+					List<Dimension2D> temp=celle[i][j].getP().celleAttaccate();
+					if(temp!=null)
+						toh.addAll(temp);
+				}
+			}
+		}
+		
+		return toh;
 	}
 	
 }
