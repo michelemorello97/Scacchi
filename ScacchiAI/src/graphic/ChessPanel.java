@@ -32,9 +32,13 @@ public class ChessPanel extends JPanel{
 	Colore turno;
 	Image regina_bianca;
 	Image regina_nera;
+	boolean scaccoAlReBianco;
+	boolean scaccoAlReNero;
 	
 	public ChessPanel(int w, int h) {
 		super();
+		scaccoAlReBianco=false;
+		scaccoAlReNero=false;
 		try {
 			regina_bianca = ImageIO.read(getClass().getResource("../resources/reginaBianca.png"));
 			regina_nera = ImageIO.read(getClass().getResource("../resources/reginaNera.png"));

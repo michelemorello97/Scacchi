@@ -173,7 +173,7 @@ public class Cavallo extends Pezzo {
 		List<Dimension2D> temp=new ArrayList<>();
 		
 			
-		
+		temp.add(posizione);
 				int x=(int)this.getPosizione().getWidth();
 				int y=(int)this.getPosizione().getHeight();
 				

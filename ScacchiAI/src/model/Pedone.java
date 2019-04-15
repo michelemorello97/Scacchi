@@ -152,7 +152,7 @@ public class Pedone extends Pezzo{
 	@Override
 	public List<Dimension2D> celleAttaccate() {
 		List<Dimension2D> celle=new LinkedList<>();
-		
+		celle.add(posizione);
 		int x=(int)this.getPosizione().getWidth();
 		int y=(int)this.getPosizione().getHeight();
 		

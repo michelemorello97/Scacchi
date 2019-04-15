@@ -154,7 +154,7 @@ public class Alfiere extends Pezzo {
 	@Override
 	public List<Dimension2D> celleAttaccate() {
 		List<Dimension2D> temp=new ArrayList<>();
-		
+		temp.add(posizione);
 			
 		
 				int x=(int)this.getPosizione().getWidth();
