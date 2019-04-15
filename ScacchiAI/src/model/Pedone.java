@@ -1,11 +1,14 @@
 package model;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import graphic.ChessPanel;
 import interfaces.Colore;
@@ -28,6 +31,7 @@ public class Pedone extends Pezzo{
 		
 			
 		reference.riassestaPos();
+		
 		
 	}
 	@Override
@@ -123,6 +127,7 @@ public class Pedone extends Pezzo{
 			}
 		
 			
+			
 			if(reference.getPossibleMoves().size()!=0)
 				reference.getPossibleMoves().clear();
 			if(temp.size()!=0)
@@ -176,4 +181,6 @@ public class Pedone extends Pezzo{
 		}
 		return celle;
 	}
+	
+	
 }

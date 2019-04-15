@@ -22,9 +22,14 @@ public class Cavallo extends Pezzo {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("sono un cavallo "+c);
 		
-		if(!mangiato())
+		if(!mangiato()) {
 			movimento();
+			reference.riassestaPos();
+			
+			reference.getAi().casualMove(reference);
+		}
 		reference.riassestaPos();
+		
 		
 	}
 	
