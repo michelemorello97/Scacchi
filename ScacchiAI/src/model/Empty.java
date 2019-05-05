@@ -86,4 +86,14 @@ public class Empty extends Pezzo {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public Pezzo celleAttaccateIgnoringTHAT(Pezzo p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean possoMuovermi(List<Pezzo> toh) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

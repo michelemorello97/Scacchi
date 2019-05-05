@@ -22,12 +22,11 @@ public class Cavallo extends Pezzo {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("sono un cavallo "+c);
 		
-		if(!mangiato()) {
-			movimento();
-			reference.riassestaPos();
+		if(!mangiato())
+			if(possoMuovermi(reference.celleAttaccateIgnoringThis(this)))
+				movimento();
+		
 			
-			reference.getAi().casualMove(reference);
-		}
 		reference.riassestaPos();
 		
 		
@@ -331,5 +330,187 @@ public class Cavallo extends Pezzo {
 				}
 			}
 		return false;
+	}
+	
+	@Override
+	public Pezzo celleAttaccateIgnoringTHAT(Pezzo p) {
+		boolean arrivaAlRe=false;
+		
+		if(this.c==Colore.bianco) {
+		
+				int x=(int)this.getPosizione().getWidth();
+				int y=(int)this.getPosizione().getHeight();
+				
+				//posizioni verso l'alto
+				x-=2;
+				if(x>=0) {
+					y+=1;
+					if(y<=7) {
+						
+						
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+							arrivaAlRe=true;
+					}
+					y-=2;
+					if(y>=0) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+				}
+					
+				
+				
+				x=(int)this.getPosizione().getWidth();
+				y=(int)this.getPosizione().getHeight();
+				//posizioni verso il basso
+				
+				x+=2;
+				if(x<=7) {
+					y+=1;
+					if(y<=7) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+					y-=2;
+					if(y>=0) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+				}
+				
+
+
+				
+				x=(int)this.getPosizione().getWidth();
+				y=(int)this.getPosizione().getHeight();
+				//posizioni verso destra
+				y+=2;
+				if(y<=7) {
+					x+=1;
+					if(x<=7) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+					x-=2;
+					if(x>=0) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+				}
+				
+				
+				
+				
+				x=(int)this.getPosizione().getWidth();
+				y=(int)this.getPosizione().getHeight();
+				//posizioni verso sinistra
+				y-=2;
+				if(y>=0) {
+					x+=1;
+					if(x<=7) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+					x-=2;
+					if(x>=0) {
+						 if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+								arrivaAlRe=true;
+					}
+				}
+		}
+		
+		else {
+			int x=(int)this.getPosizione().getWidth();
+			int y=(int)this.getPosizione().getHeight();
+			
+			//posizioni verso l'alto
+			x-=2;
+			if(x>=0) {
+				y+=1;
+				if(y<=7) {
+					
+					 if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+							arrivaAlRe=true;
+				}
+				y-=2;
+				if(y>=0) {
+					 if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+							arrivaAlRe=true;
+				}
+			}
+				
+			
+			
+			x=(int)this.getPosizione().getWidth();
+			y=(int)this.getPosizione().getHeight();
+			//posizioni verso il basso
+			
+			x+=2;
+			if(x<=7) {
+				y+=1;
+				if(y<=7) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+				y-=2;
+				if(y>=0) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+			}
+			
+
+
+			
+			x=(int)this.getPosizione().getWidth();
+			y=(int)this.getPosizione().getHeight();
+			//posizioni verso destra
+			y+=2;
+			if(y<=7) {
+				x+=1;
+				if(x<=7) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+				x-=2;
+				if(x>=0) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+			}
+			
+			
+			
+			
+			x=(int)this.getPosizione().getWidth();
+			y=(int)this.getPosizione().getHeight();
+			//posizioni verso sinistra
+			y-=2;
+			if(y>=0) {
+				x+=1;
+				if(x<=7) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+				x-=2;
+				if(x>=0) {
+					if(x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+						arrivaAlRe=true;
+				}
+			}
+		}
+			
+		if(arrivaAlRe)
+			return this;
+		else
+			return null;
+	}
+	
+	@Override
+	public boolean possoMuovermi(List<Pezzo> toh) {
+		if(toh!= null && toh.size()>=1)
+			return false;
+
+		return true;
 	}
 }

@@ -55,4 +55,6 @@ public abstract class Pezzo implements ActionListener{
 	public abstract List<Dimension2D> celleAttaccate();
 	
 	public abstract boolean mangiato();
+	public abstract Pezzo celleAttaccateIgnoringTHAT(Pezzo p);
+	public abstract boolean possoMuovermi(List<Pezzo> toh);
 }

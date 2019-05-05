@@ -27,7 +27,8 @@ public class Pedone extends Pezzo{
 		System.out.println("sONO UN PEDONE "+ this.c+" "+posizione.getWidth()+" "+posizione.getHeight());
 		
 		if(!mangiato())
-			movimento();
+			if(possoMuovermi(reference.celleAttaccateIgnoringThis(this)))
+				movimento();
 		
 			
 		reference.riassestaPos();
@@ -181,6 +182,49 @@ public class Pedone extends Pezzo{
 		}
 		return celle;
 	}
+	public boolean possoMuovermi(List<Pezzo> toh) {
+		if(toh!= null && toh.size()>=1) 
+			return false;
+		return true;
+	}
 	
+	@Override
+	public Pezzo celleAttaccateIgnoringTHAT(Pezzo p) {
+		boolean arrivaAlRe=false;
+		int x=(int)this.getPosizione().getWidth();
+		int y=(int)this.getPosizione().getHeight();
+		
+		if(this.c==Colore.bianco)
+		{
+			x--;
+			y++;
+			if(x>=0 && y<=7) 
+				if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+			arrivaAlRe=true;
+			
+			y-=2;
+			if(x>=0 && y>=0)
+				if(x==(int)reference.getReNero().getPosizione().getWidth() && y==(int)reference.getReNero().getPosizione().getHeight())
+					arrivaAlRe=true;
+		}
+		
+		
+		else {
+			x++;
+			y++;
+			if(x<=7 && y<=7) 
+				if((x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReBianco().getPosizione().getHeight()))
+					arrivaAlRe=true;
+			
+			y-=2;
+			if(x<=7 && y>=0)
+				if((x==(int)reference.getReBianco().getPosizione().getWidth() && y==(int)reference.getReBianco().getPosizione().getHeight()))
+					arrivaAlRe=true;
+		}
+		if(arrivaAlRe)
+			return this;
+		else
+			return null;
+	}
 	
 }

@@ -21,6 +21,7 @@ import javafx.geometry.Dimension2D;
 import model.Cell;
 import model.Empty;
 import model.Pedone;
+import model.Re;
 import model.Regina;
 
 public class ChessPanel extends JPanel{
@@ -34,6 +35,10 @@ public class ChessPanel extends JPanel{
 	Image regina_nera;
 	boolean scaccoAlReBianco;
 	boolean scaccoAlReNero;
+	List<Pezzo> pezziBianchi;
+	List<Pezzo> pezziNeri;
+	Pezzo reNero;
+	Pezzo reBianco;
 	
 	public ChessPanel(int w, int h) {
 		super();
@@ -59,10 +64,19 @@ public class ChessPanel extends JPanel{
 			
 				this.add(celle[i][j].getBtn());
 			}
+		pezziBianchi=new LinkedList<Pezzo>();
+		pezziNeri=new LinkedList<Pezzo>();
 		
-	
+		for(int i=0; i<2; i++) {
+			for(int j=0; j<8; j++)
+			{
+				pezziNeri.add(celle[i][j].getP());
+				pezziBianchi.add(celle[i+6][j].getP());
+			}
+		}
 		
-		
+		reNero=celle[0][4].getP();
+		reBianco=celle[7][4].getP();
 	
 		repaint();
 	}
@@ -73,7 +87,7 @@ public class ChessPanel extends JPanel{
 		
 		for(int i=0; i<8; i++) {
 			for(int j=0; j<8; j++) {
-				celle[i][j].getBtn().setBounds(j*70, i*70, 73, 70);
+				celle[i][j].getBtn().setBounds(j*74, i*70, 74, 70);
 				if((i+j)%2==0)
 					celle[i][j].getBtn().setBackground(new Color(245,	245,	220));
 					
@@ -88,7 +102,6 @@ public class ChessPanel extends JPanel{
 				celle[(int)d.getWidth()][(int)d.getHeight()].getBtn().setBackground(new Color(127,	255,	0));
 			}
 		}
-		
 		
 		
 		
@@ -160,6 +173,27 @@ public class ChessPanel extends JPanel{
 		}
 	}
 	
+	public List<Pezzo> celleAttaccateIgnoringThis(Pezzo p){
+		List<Pezzo> toh=new LinkedList<>();
+	
+		for(int i=0; i<8; i++)
+		{
+			for(int j=0; j<8; j++)
+			{
+				//if(celle[i][j].getP().getC()!=p.getC()) vecchio controllo
+				if(celle[i][j].getP().getC()!=turno)
+				{
+					Pezzo temp=celle[i][j].getP().celleAttaccateIgnoringTHAT(p);
+					if(temp!=null)
+						toh.add(temp);
+				}
+			}
+		}
+		if(toh!=null && toh.size()!=0)
+			System.out.println(toh.get(0).getPosizione());
+		return toh;
+	}
+	
 	public List<Dimension2D> cellaAttaccata(Pezzo p) {
 		List<Dimension2D> toh=new LinkedList<>();
 		
@@ -226,5 +260,55 @@ public void turnToQueen(int i, int j) {
 		
 		repaint();
 	}
+
+public boolean isScaccoAlReBianco() {
+	return scaccoAlReBianco;
+}
+
+public void setScaccoAlReBianco(boolean scaccoAlReBianco) {
+	this.scaccoAlReBianco = scaccoAlReBianco;
+}
+
+public boolean isScaccoAlReNero() {
+	return scaccoAlReNero;
+}
+
+public void setScaccoAlReNero(boolean scaccoAlReNero) {
+	this.scaccoAlReNero = scaccoAlReNero;
+}
+
+public List<Pezzo> getPezziBianchi() {
+	return pezziBianchi;
+}
+
+public void setPezziBianchi(List<Pezzo> pezziBianchi) {
+	this.pezziBianchi = pezziBianchi;
+}
+
+public List<Pezzo> getPezziNeri() {
+	return pezziNeri;
+}
+
+public void setPezziNeri(List<Pezzo> pezziNeri) {
+	this.pezziNeri = pezziNeri;
+}
+
+public Pezzo getReNero() {
+	return reNero;
+}
+
+public void setReNero(Pezzo reNero) {
+	this.reNero = reNero;
+}
+
+public Pezzo getReBianco() {
+	return reBianco;
+}
+
+public void setReBianco(Pezzo reBianco) {
+	this.reBianco = reBianco;
+}
+
+
 	
 }

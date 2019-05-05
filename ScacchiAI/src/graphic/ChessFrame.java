@@ -13,7 +13,7 @@ public class ChessFrame extends JFrame{
 		super();
 		
 		
-		this.setSize(600, 600);
+		this.setSize((74*8)+6, (73*8)+7);
 		this.setResizable(false);
 		panel= new ChessPanel(600, 600);
 		
